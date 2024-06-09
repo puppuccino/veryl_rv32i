@@ -1,4 +1,4 @@
-pub module get_imm32_and_optype (
+pub module gen_imm32_and_optype (
     i_insn  : input  logic<32>,
     o_imm   : output logic<32>,
     is_jtype: output logic    ,

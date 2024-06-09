@@ -31,7 +31,7 @@ pub module proc (
     var is_itype: logic;
     var is_rtype: logic;
     var is_load : logic;
-    inst u_get_imm32_and_optype: get_imm32_and_optype (
+    inst u_gen_imm32_and_optype: gen_imm32_and_optype (
         i_insn  : w_ir ,
         o_imm   : w_imm,
         is_jtype       ,
