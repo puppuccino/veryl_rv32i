@@ -85,7 +85,6 @@ pub module proc (
     var w_loaded: logic<32>;
     inst u_dmem: dmem (
         clk              ,
-        rst              ,
         adr: w_alu_result,
         wd : w_imm       ,
         we : is_stype    ,

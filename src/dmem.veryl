@@ -1,7 +1,6 @@
 /// A simple data memory module with 1024 32-bit words.
 module dmem (
     clk: input  clock    ,
-    rst: input  reset    ,
     adr: input  logic<32>, /// write address
     wd : input  logic<32>, /// write data
     we : input  logic    , /// write enable
