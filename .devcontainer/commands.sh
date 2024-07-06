@@ -1,9 +1,12 @@
+# compile the testbench file with the verilator
 function vcomp() {
-    # stands for Verilator Compile
     # rm -rf objdir # is this necessary?
     local TESTBENCH_FILE="./testbench.sv"
-    cat output/util.sv > run_sim.sv
-    cat $TESTBENCH_FILE >> run_sim.sv
+
+    TEMP_FILE=$(mktemp)
+    cat output/util.sv  >> $TEMP_FILE
+    cat $TESTBENCH_FILE >> $TEMP_FILE
+
     # Run Verilator linting on the testbench file
     verilator \
         --binary \
@@ -12,20 +15,23 @@ function vcomp() {
         -Ioutput \
         -sv \
         run_sim.sv
-    rm -f run_sim.sv
+
+    rm -f $TEMP_FILE
 }
 
+# Run Verilator linting on the testbench file
 function vlint() {
     local TESTBENCH_FILE="./testbench.sv"
-    cat output/util.sv > vlint
-    cat $TESTBENCH_FILE >> vlint
-    # Run Verilator linting on the testbench file
+
+    TEMP_FILE=$(mktemp)
+
+    cat output/util.sv  >> $TEMP_FILE
+    cat $TESTBENCH_FILE >> $TEMP_FILE
 
     # @options:
-    # Wno-DECLFILENAME: disable warning about the mismatch 
+    # Wno-DECLFILENAME: Disable the warning about the mismatch 
     #                   between the file name and the module name
-    # Wno-UNUSEDSIGNAL: disable warning about unused signals
-
+    # Wno-UNUSEDSIGNAL: Disable the warning about unused signals
     verilator \
         --lint-only \
         --timing \
@@ -35,5 +41,6 @@ function vlint() {
         -Ioutput \
         -sv \
         vlint
-    rm -f vlint
+    
+    rm -f $TEMP_FILE 
 }
