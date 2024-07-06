@@ -14,7 +14,7 @@ function vcomp() {
         -trace-fst \
         -Ioutput \
         -sv \
-        run_sim.sv
+        $TEMP_FILE
 
     rm -f $TEMP_FILE
 }
@@ -40,7 +40,7 @@ function vlint() {
         -Wno-UNUSEDSIGNAL \
         -Ioutput \
         -sv \
-        vlint
-    
+        $TEMP_FILE
+
     rm -f $TEMP_FILE 
 }
